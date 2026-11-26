@@ -84,4 +84,9 @@ public class CommonSteps {
     public void validarTamanhoLista(int quantidadeEsperada) {
         context.getResponse().then().body("$", hasSize(quantidadeEsperada));
     }
+
+    @E("o campo inteiro {string} da resposta deve ser {int}")
+    public void validarValorCampoInteiro(String campo, int valorEsperado) {
+        context.getResponse().then().body(campo, equalTo(valorEsperado));
+    }
 }
