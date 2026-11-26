@@ -7,7 +7,11 @@ import io.cucumber.java.pt.Quando;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
+import java.math.BigDecimal;
+
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.comparesEqualTo;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
@@ -40,6 +44,15 @@ public class CommonSteps {
         context.setResponse(response);
     }
 
+    @Quando("envio uma requisição DELETE para {string}")
+    public void enviarRequisicaoDelete(String endpoint) {
+        Response response = given()
+                .when()
+                .delete(endpoint);
+
+        context.setResponse(response);
+    }
+
     @Entao("o status da resposta deve ser {int}")
     public void validarStatus(int statusEsperado) {
         context.getResponse().then().statusCode(statusEsperado);
@@ -53,6 +66,18 @@ public class CommonSteps {
     @E("o campo {string} da resposta deve ser {string}")
     public void validarValorCampoTexto(String campo, String valorEsperado) {
         context.getResponse().then().body(campo, equalTo(valorEsperado));
+    }
+
+    @E("o campo numérico {string} da resposta deve ser {string}")
+    public void validarValorCampoNumerico(String campo, String valorEsperado) {
+        context.getResponse().then().body(campo, notNullValue());
+        BigDecimal valorRetornado = new BigDecimal(context.getResponse().jsonPath().getString(campo));
+        assertThat(valorRetornado, comparesEqualTo(new BigDecimal(valorEsperado)));
+    }
+
+    @E("o campo booleano {string} da resposta deve ser {word}")
+    public void validarValorCampoBooleano(String campo, String valorEsperado) {
+        context.getResponse().then().body(campo, equalTo(Boolean.parseBoolean(valorEsperado)));
     }
 
     @E("a lista retornada deve conter {int} registro(s)")
