@@ -12,6 +12,7 @@ Funcionalidade: Gerenciamento de Produtos na Baozi Store
     E o campo "nome" da resposta deve ser "<nome>"
     E o campo numérico "preco" da resposta deve ser "<preco>"
     E o campo booleano "estoque" da resposta deve ser <estoque>
+    E o corpo da resposta deve respeitar o contrato "produto-schema.json"
 
     Exemplos:
       | nome                       | preco | estoque |
@@ -25,6 +26,7 @@ Funcionalidade: Gerenciamento de Produtos na Baozi Store
     Quando envio uma requisição GET para "/produtos"
     Então o status da resposta deve ser 200
     E a lista retornada deve conter 2 registros
+    E o corpo da resposta deve respeitar o contrato "produtos-lista-schema.json"
 
   Cenário: Consultar um produto por ID existente
     Dado que já existe um produto cadastrado com nome "Baozi Tradicional de Carne", preço "8.50" e estoque true
@@ -33,6 +35,7 @@ Funcionalidade: Gerenciamento de Produtos na Baozi Store
     E o campo "nome" da resposta deve ser "Baozi Tradicional de Carne"
     E o campo numérico "preco" da resposta deve ser "8.50"
     E o campo booleano "estoque" da resposta deve ser true
+    E o corpo da resposta deve respeitar o contrato "produto-schema.json"
 
   Cenário: Consultar um produto com ID inexistente
     Quando envio uma requisição GET para "/produtos/999"

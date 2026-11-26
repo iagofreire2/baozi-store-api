@@ -15,6 +15,7 @@ Funcionalidade: Gerenciamento de Pedidos na Baozi Store
     E o corpo da resposta deve conter o campo "id" preenchido
     E o pedido retornado deve estar vinculado ao cliente e produto cadastrados
     E o campo inteiro "quantidade" da resposta deve ser 4
+    E o corpo da resposta deve respeitar o contrato "pedido-schema.json"
 
   Cenário: Listar todos os pedidos registrados
     Dado que já existe um pedido cadastrado para esse cliente e esse produto com quantidade 4
@@ -28,6 +29,7 @@ Funcionalidade: Gerenciamento de Pedidos na Baozi Store
     Então o status da resposta deve ser 200
     E o pedido retornado deve estar vinculado ao cliente e produto cadastrados
     E o campo inteiro "quantidade" da resposta deve ser 4
+    E o corpo da resposta deve respeitar o contrato "pedido-schema.json"
 
   Cenário: Consultar um pedido com ID inexistente
     Quando envio uma requisição GET para "/pedidos/999"

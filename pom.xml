@@ -68,6 +68,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Validação de Contrato (JSON Schema) -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>6.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Cucumber + JUnit Platform + Spring -->
         <dependency>
             <groupId>io.cucumber</groupId>

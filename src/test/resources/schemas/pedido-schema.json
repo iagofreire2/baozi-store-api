@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "clienteId", "produtoId", "quantidade"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "clienteId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "produtoId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "quantidade": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

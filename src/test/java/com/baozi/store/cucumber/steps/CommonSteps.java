@@ -10,6 +10,7 @@ import io.restassured.response.Response;
 import java.math.BigDecimal;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.comparesEqualTo;
 import static org.hamcrest.Matchers.equalTo;
@@ -88,5 +89,11 @@ public class CommonSteps {
     @E("o campo inteiro {string} da resposta deve ser {int}")
     public void validarValorCampoInteiro(String campo, int valorEsperado) {
         context.getResponse().then().body(campo, equalTo(valorEsperado));
+    }
+
+    @E("o corpo da resposta deve respeitar o contrato {string}")
+    public void validarContratoJson(String arquivoSchema) {
+        context.getResponse().then()
+                .body(matchesJsonSchemaInClasspath("schemas/" + arquivoSchema));
     }
 }

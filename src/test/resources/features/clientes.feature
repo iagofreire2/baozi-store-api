@@ -10,6 +10,7 @@ Funcionalidade: Gerenciamento de Clientes na Baozi Store
     Então o status da resposta deve ser 201
     E o corpo da resposta deve conter o campo "id" preenchido
     E o campo "nome" da resposta deve ser "João Silva - RU: 1234567"
+    E o corpo da resposta deve respeitar o contrato "cliente-schema.json"
 
   Cenário: Listar todos os clientes cadastrados
     Dado que já existe um cliente cadastrado com nome "João Silva - RU: 1234567" e data "2026-02-15"
@@ -22,6 +23,7 @@ Funcionalidade: Gerenciamento de Clientes na Baozi Store
     Quando consulto esse cliente pelo seu ID
     Então o status da resposta deve ser 200
     E o campo "nome" da resposta deve ser "João Silva - RU: 1234567"
+    E o corpo da resposta deve respeitar o contrato "cliente-schema.json"
 
   Cenário: Consultar um cliente com ID inexistente
     Quando envio uma requisição GET para "/clientes/999"
